@@ -2,19 +2,87 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  Helvetica, Arial, sans-serif;
+    background-color: #F2F2F2;
+    min-height: 100vh;
 }
 
+.header {
+    color: #595959;
+    font-size: 1.3rem;
+    padding: 0% 20%;
+    margin: 0%;
+}
 .main {
     flex: 1;
-}
-
-.numbers {
-    display:flex;
-    flex-direction: row;
-}
-
-.operators {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    justify-items: flex-end;
+    
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    min-height: 84vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.container > button {
+    cursor: pointer;
+    border: 1px solid #F2F2F2;
+    outline: none;
+}
+
+.container > button:hover {
+    background-color: #F2F2F2;
+}
+
+.normal-button {
+    background-color: #F9F9F9;
+    color: #595959;
+    font-size: 1.3rem;
+}
+
+.long-button {
+    grid-column: span 2;
+    background-color: #70EBBC;
+    color: #F2F2F2;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.output {
+    grid-column: 1 / -1;
+    background-color: #595959;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+footer {
+    align-items: center;
+    justify-content: center;
+    color: #595959;
+    font-weight: bolder;
+}
+
+.output .previous-operand {
+    font-size: 1.5rem;
+    color: #F2F2F2;
+    font-weight: bold;
+}
+
+.output .current-operand {
+    font-size: 2.9rem;
+    color: #88F2C1;
+    font-weight: bold;
 }
