@@ -1,6 +1,6 @@
 let currentOperand = "";
 let previousOperand = "";
-let operation = null;
+let currentOperation = null;
 
 const numberButtons = document.querySelectorAll("[data-numbers]");
 const operandButtons = document.querySelectorAll("[data-operators]");
@@ -63,7 +63,7 @@ function deletebut() {
 
 function chooseOperation(operation) {
     if (currentOperand === "") return
-    if (previousOperand !== "") {
+    if (previousOperand !== "" || currentOperation !== null) {
         compute();
     }
     previousOperandText.textContent = currentOperandText.textContent;
@@ -77,6 +77,7 @@ function compute() {
     if (currentOperand === "÷" && currentOperandText.textContent === "0") {
         alert("Can't divide by 0!")
     } else currentOperandText.textContent = results(calculation(currentOperation,currentOperand, previousOperand))
+    currentOperand = currentOperandText.textContent;
     currentOperation = null;
 }
 
