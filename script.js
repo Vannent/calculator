@@ -74,7 +74,8 @@ function chooseOperation(operation) {
 }
 
 function compute() {
-    if (currentOperand === "÷" && currentOperandText.textContent === "0") {
+    if (currentOperation === null) return
+    if (currentOperation === "÷" && currentOperandText.textContent === "0") {
         alert("Can't divide by 0!")
     } else currentOperandText.textContent = results(calculation(currentOperation,currentOperand, previousOperand))
     currentOperand = currentOperandText.textContent;
@@ -91,13 +92,17 @@ function calculation(operation, currentOperand, previousOperand) {
     switch(operation) {
         case "+":
             return a + b
+            break
         case "-":
             return a - b
+            break
         case "÷":
             if (b === 0) return null
             else return a / b
+            break
         case "x":
             return a * b
+            break
         default:
             return null
         
