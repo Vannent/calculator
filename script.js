@@ -17,12 +17,30 @@ numberButtons.forEach(button => {
     })
 })
 
+operandButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        chooseOperation(button.textContent);
+        console.log("Button " + e.target.textContent + " clicked.");
+    })
+})
+
 clearButton.addEventListener("click", (e) => {
     clear();
     console.log("Button " + e.target.textContent + " clicked.");
 })
 
+deleteButton.addEventListener("click", (e) => {
+    deletebut();
+    console.log("Button " + e.target.textContent + " clicked.");
+})
+
+equalButton.addEventListener("click", (e) => {
+    compute();
+    console.log("Button " + e.target.textContent + " clicked.");
+})
+
 function appendNumber(number) {
+    currentOperand += number;
     currentOperandText.textContent += number;
 }
 
@@ -31,24 +49,56 @@ function clear() {
     previousOperandText.textContent = "";
     currentOperand = "";
     previousOperand = "";
-    operation = undefined
+    currentOperation = null;
 }
-// function addFunc(a, b) {
-//     return a + b;
-// }
-// console.log("Add funct: " + addFunc(2, 4));
 
-// function subFunc(a, b) {
-//     return a - b;
-// }
-// console.log("Substract funct: " + subFunc(2, 4));
+function deletebut() {
+    currentOperandText.textContent = currentOperandText.textContent
+    .toString()
+    .slice(0, -1)
+    currentOperand = currentOperand
+    .toString()
+    .slice(0, -1)
+}
 
-// function mulFunc(a, b) {
-//     return a * b;
-// }
-// console.log("Multiply funct: " + mulFunc(2, 4));
+function chooseOperation(operation) {
+    if (currentOperand === "") return
+    if (previousOperand !== "") {
+        compute();
+    }
+    previousOperandText.textContent = currentOperandText.textContent;
+    currentOperandText.textContent = "";
+    previousOperand = currentOperand;
+    currentOperand = "";
+    currentOperation = operation;
+}
 
-// function divFunc(a, b) {
-//     return a / b;
-// }
-// console.log("Divide funct: " + divFunc(2, 4));
+function compute() {
+    if (currentOperand === "÷" && currentOperandText.textContent === "0") {
+        alert("Can't divide by 0!")
+    } else currentOperandText.textContent = results(calculation(currentOperation,currentOperand, previousOperand))
+    currentOperation = null
+}
+
+function results(number) {
+    return Math.round(number * 1000) / 1000
+}
+
+function calculation(operation, currentOperand, previousOperand) {
+    a = parseFloat(currentOperand)
+    b = parseFloat(previousOperand)
+    switch(operation) {
+        case "+":
+            return a + b
+        case "-":
+            return a - b
+        case "÷":
+            return a / b
+        case "x":
+            return a * b
+        default:
+            return null
+        
+    }
+}
+
