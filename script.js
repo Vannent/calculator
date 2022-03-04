@@ -94,7 +94,7 @@ function calculation(operation, currentOperand, previousOperand) {
             return a + b
             break
         case "-":
-            if (a < b) return "-" + (a - b)
+            if (a > b) return "-" + (a - b)
             else return a - b
             break
         case "÷":
