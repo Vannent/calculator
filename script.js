@@ -1,6 +1,6 @@
 let currentOperand = "";
 let previousOperand = "";
-let operation = undefined;
+let operation = null;
 
 const numberButtons = document.querySelectorAll("[data-numbers]");
 const operandButtons = document.querySelectorAll("[data-operators]");
@@ -77,7 +77,7 @@ function compute() {
     if (currentOperand === "÷" && currentOperandText.textContent === "0") {
         alert("Can't divide by 0!")
     } else currentOperandText.textContent = results(calculation(currentOperation,currentOperand, previousOperand))
-    currentOperation = undefined;
+    currentOperation = null;
 }
 
 function results(number) {
