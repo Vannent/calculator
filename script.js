@@ -49,7 +49,7 @@ function clear() {
     previousOperandText.textContent = "";
     currentOperand = "";
     previousOperand = "";
-    currentOperation = null;
+    currentOperation = undefined;
 }
 
 function deletebut() {
@@ -77,7 +77,7 @@ function compute() {
     if (currentOperand === "÷" && currentOperandText.textContent === "0") {
         alert("Can't divide by 0!")
     } else currentOperandText.textContent = results(calculation(currentOperation,currentOperand, previousOperand))
-    currentOperation = null
+    currentOperation = undefined;
 }
 
 function results(number) {
@@ -93,7 +93,8 @@ function calculation(operation, currentOperand, previousOperand) {
         case "-":
             return a - b
         case "÷":
-            return a / b
+            if (b === 0) return null
+            else return a / b
         case "x":
             return a * b
         default:
@@ -101,4 +102,3 @@ function calculation(operation, currentOperand, previousOperand) {
         
     }
 }
-
