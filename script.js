@@ -49,7 +49,7 @@ function clear() {
     previousOperandText.textContent = "";
     currentOperand = "";
     previousOperand = "";
-    currentOperation = undefined;
+    currentOperation = null;
 }
 
 function deletebut() {
