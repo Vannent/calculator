@@ -1,7 +1,6 @@
 let currentOperand = "";
 let previousOperand = "";
 let currentOperation = null;
-const ESCAPE_KEY = 27;
 
 const numberButtons = document.querySelectorAll("[data-numbers]");
 const operandButtons = document.querySelectorAll("[data-operators]");
