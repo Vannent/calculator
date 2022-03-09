@@ -1,6 +1,7 @@
 let currentOperand = "";
 let previousOperand = "";
 let currentOperation = null;
+const ESCAPE_KEY = 27;
 
 const numberButtons = document.querySelectorAll("[data-numbers]");
 const operandButtons = document.querySelectorAll("[data-operators]");
@@ -38,6 +39,8 @@ equalButton.addEventListener("click", (e) => {
     compute();
     console.log("Button " + e.target.textContent + " clicked.");
 })
+
+window.addEventListener("keydown", keyboardSupport);
 
 function appendNumber(number) {
     currentOperand += number;
@@ -109,4 +112,14 @@ function calculation(operation, currentOperand, previousOperand) {
             return null
         
     }
+}
+
+function keyboardSupport(e) {
+    if (e.key >= 0 && e.key <= 9 || e.key == ".") appendNumber(e.key)
+    if (e.key == "Enter") compute()
+    if (e.key == "Backspace") deletebut()
+    if (e.key == "Escape") clear()
+    if (e.key === "+" || e.key === "-") chooseOperation(e.key)
+    if (e.key === "*") chooseOperation("x")
+    if (e.key === "/") chooseOperation("÷")
 }
